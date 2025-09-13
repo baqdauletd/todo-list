@@ -21,10 +21,11 @@ func main(){
 		DueDate: &dueDate,
 		Priority: "High",
 	}
-	taskRepo.CreateTaskRepo(task)
+	taskRepo.CreateTaskRepo(&task)
 	fmt.Println("Task Created")
+	fmt.Println(task)
 
-	found := taskRepo.FindTaskRepo(1)
+	found := taskRepo.FindTaskRepo(15)
 	fmt.Println("Found Task:", found)
 
 	tasks := taskRepo.ListTaskRepo()
@@ -45,5 +46,8 @@ func main(){
 todo
 - repo -> service -> handler
 todo
-- whole CRUD in repo
+- DONE: whole CRUD in repo
+
+todo
+- whole CRUD in services
 */

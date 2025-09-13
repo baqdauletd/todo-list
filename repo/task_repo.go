@@ -14,7 +14,7 @@ func NewTaskRepo(db *gorm.DB) *TaskRepo{
 	return &TaskRepo{db:db}
 }
 
-func (r *TaskRepo) CreateTaskRepo(tasks models.Task) error{
+func (r *TaskRepo) CreateTaskRepo(tasks *models.Task) error{
 	return r.db.Create(&tasks).Error
 }
 
@@ -36,5 +36,8 @@ func (r *TaskRepo) UpdateTaskRepo(task *models.Task){
 }
 
 func (r *TaskRepo) DeleteTaskRepo(id uint){
-	r.db.Delete(&models.Task{}, "id=?", id)
+	var task models.Task
+	r.db.First(&task, "id=?", id)
+	
+	r.db.Delete(&task)
 }
